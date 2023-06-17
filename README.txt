@@ -16,3 +16,8 @@ the scritp is portable
 you just need to install python 3.9
 
 its that simple.
+
+Planed features:
+	-Bulk Pack Making
+	-Pull from Midi databases
+	-Music Picker
