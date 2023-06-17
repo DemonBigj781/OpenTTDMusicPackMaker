@@ -1,6 +1,6 @@
 [README]
 
-This is to generate you own musicpack
+This is to generate you own musicpack for Open Transport Tycoon Deluxe
 You need up to 31 midi files to get the .obm file to work
 the root folder should look like this
 #############################
