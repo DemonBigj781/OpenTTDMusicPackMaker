@@ -2,11 +2,24 @@ import os
 import fnmatch
 import hashlib
 from itertools import chain
+from os import listdir
+from os import path
+import string
+import re
+import sys
+from pathlib import Path
+import unicodedata
+import re
 
 class Files:
     def getdir():
         dir = os.getcwd() + "\\music\\";
         return dir;
+    def getsetdir():
+        dir = os.getcwd()+"\\music\\";
+        return dir;
+
+               
     def getfiles():
         res = []
         for path in os.listdir(Files.getdir()):
@@ -87,6 +100,43 @@ class Files:
         file1.write(Files.joinalltexts());
         file1.close()
         return
+
+    def containsNumber(value):
+        for character in value:
+            if character.isdigit():
+                return True
+        return False
+    
+    def renamefiles():
+        delchars = ''.join(c for c in map(chr, range(256)) if not c.isalnum())
+        lv_path = os.getcwd()+ "\\submithere\\";
+        paths = (os.path.join(root, filename)
+            for root, _, filenames in os.walk(lv_path)
+            for filename in filenames)
+        print ("Search at " + lv_path)
+        for count, path in enumerate(paths, start = 0):
+            newname = path.replace('#', '')
+            newname = newname.replace(lv_path, '')
+            newname = newname.replace('%', '')
+            newname = newname.replace('*', '')
+            newname = newname.replace('<', '')
+            newname = newname.replace('>', '')
+            newname = newname.replace('*', '')
+            newname = newname.replace('?', '')
+            newname = newname.replace('\'', '')
+            newname = newname.replace(' ', '')
+            newname = newname.replace('-', '')
+            newname = newname.replace('(', '')
+            newname = newname.replace(')', '')
+            for i in range(len(Files.getsetdir())):
+                newname = newname.replace('Copy', '')
+                newname = newname.replace(str(i), '')
+            
+            newname = newname[:-4] + str(count) +".mid";
+            os.rename(path, os.getcwd()+"\\music\\"+ newname);
+
+            
+Files.renamefiles();
 
 Files.createobmfile();
 
